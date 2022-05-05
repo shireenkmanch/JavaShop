@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Home</title>
+        
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.horizontalNav.js"></script>
+        <script type="text/javascript" src="js/prefixfree.min.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/common.css" />
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.full-width').horizontalNav({});
+              });
+            
+        </script>
+        
+    </h:head>
+    <h:body>
+        
+        <nav class="horizontal-nav full-width horizontalNav-notprocessed">
+            <ul>
+              <li><h:outputLink value="home.xhtml">Home</h:outputLink></li>
+              <li><h:outputLink value="updateProfile.xhtml">Update My Profile</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="addProduct.xhtml">Add Product</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="removeProduct.xhtml">Remove Product</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="updateQuantity.xhtml">Update Quantity</h:outputLink></li>
+              <li><h:outputLink value="browseProducts.xhtml">Browse Products</h:outputLink></li>
+              <li><h:outputLink value="searchProducts.xhtml">Search Products</h:outputLink></li>
+              <li><h:outputLink value="searchProfiles.xhtml">Search Profiles</h:outputLink></li>
+              <li><h:outputLink value="cart.xhtml">Cart</h:outputLink></li>
+              <li><h:outputLink value="logout.xhtml">Logout</h:outputLink></li>
+            </ul>
+        </nav>
+        
+        
+        <div id="container1">
+
+            <h:form id="HomeForm">
+                
+                <div class="field_container" style="text-align: center; font-size: x-large;">
+                    Welcome <h:outputText value="#{user.userid}"></h:outputText> <br/><br/>
+                </div>
+                
+                <div class="field_container">
+                    <h4>Click on any of the above links to proceed.</h4>
+                </div>
+                
+            </h:form>
+
+        </div>
+        
+    </h:body>
+</html>
+

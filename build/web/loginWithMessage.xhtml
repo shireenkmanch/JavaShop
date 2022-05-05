@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Login</title>
+
+        <script type="text/javascript" src="js/prefixfree.min.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/common.css" />
+    </h:head>
+    <h:body onload="document.getElementById('LoginForm:userid').focus();">
+
+        <div id="container1">
+
+            <h:form id="LoginForm">
+                
+                
+                
+                <div class="field_container" style="text-align: center; font-size: x-large;">
+                    Login <br/><br/>
+                </div>
+                
+                <div class="field_container">
+                    <h:outputText style="color: red;" value="#{user.custom_message}"></h:outputText>
+                </div>
+                
+                <div class="field_container">
+                    <h:outputLabel for="userid">User ID</h:outputLabel><br/>
+                    <h:inputText id="userid" value="#{user.userid}" required="true" requiredMessage="User ID is required" />
+                </div>
+
+                <div class="field_container">
+                    <h:outputLabel for="password">Password</h:outputLabel><br/>  
+                    <h:inputSecret id="password" value="#{user.password}" required="true" requiredMessage="Password is required"></h:inputSecret> <br/><br/>     
+                </div>
+
+                <div class="field_container" style="text-align: center;">
+                    <h:commandButton id="submit-button" value="Login" action="#{user.authenticate()}"/>  
+                </div>
+
+                <div class="field_container" style="text-align: center;">
+                    New User?
+                    <h:outputLink value="register.xhtml">Create an account</h:outputLink>
+                </div>
+
+            </h:form>
+
+        </div>
+
+    </h:body>
+</html>
+

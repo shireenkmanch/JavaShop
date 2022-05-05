@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Product Details</title>
+        
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.horizontalNav.js"></script>
+        <script type="text/javascript" src="js/prefixfree.min.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/common.css" />
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.full-width').horizontalNav({});
+              });
+            
+        </script>
+        
+    </h:head>
+    <h:body>
+        
+        
+        <nav class="horizontal-nav full-width horizontalNav-notprocessed">
+            <ul>
+              <li><h:outputLink value="home.xhtml">Home</h:outputLink></li>
+              <li><h:outputLink value="updateProfile.xhtml">Update My Profile</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="addProduct.xhtml">Add Product</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="removeProduct.xhtml">Remove Product</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="updateQuantity.xhtml">Update Quantity</h:outputLink></li>
+              <li><h:outputLink value="browseProducts.xhtml">Browse Products</h:outputLink></li>
+              <li><h:outputLink value="searchProducts.xhtml">Search Products</h:outputLink></li>
+              <li><h:outputLink value="searchProfiles.xhtml">Search Profiles</h:outputLink></li>
+              <li><h:outputLink value="cart.xhtml">Cart</h:outputLink></li>
+              <li><h:outputLink value="logout.xhtml">Logout</h:outputLink></li>
+            </ul>
+        </nav>
+        
+        
+        #{product.checkIfQueryExists()}
+        
+        <div id="container1">
+            
+            
+                
+                <div class="field_container" style="text-align: center; font-size: x-large;">
+                    Product Details <br/><br/>
+                </div>
+                
+                <div class="field_container">
+
+                    <br/>Product Name: #{product.product.productName}<br/>
+                    <br/>Product Price: #{product.product.price}<br/>
+                    <br/><img src="images/#{product.product.productId}.jpg"/> <br/>
+
+                </div>
+                
+                <div class="field_container">
+                    <h:form id="form">
+                    <input type="hidden" name="query" value="#{product.query}"/>
+                    <h:commandButton value="Add to Cart" action="#{product.addToCart()}" onclick="this.value='Added'; this.disabled='disabled';">
+                        <f:ajax execute="@form" render=":cartSize"/>
+                    </h:commandButton>
+                    </h:form>
+                </div>
+            
+            
+                <div class="field_container">
+                    <h:outputText id="cartSize" value="Your Cart has currently #{cart.cartCount} item(s)"/>
+                    <br/><br/>
+                </div>
+                
+                
+                
+            
+            
+            
+        </div>
+        
+        
+        
+            
+        <!--
+        <h:outputLink value="cart.xhtml">Cart</h:outputLink><br/>
+        <h:outputLink value="browseProducts.xhtml">Browse Products</h:outputLink><br/>
+        -->
+        
+    </h:body>
+</html>
+

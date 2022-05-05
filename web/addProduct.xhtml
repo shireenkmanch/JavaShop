@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Add Product</title>
+        
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.horizontalNav.js"></script>
+        <script type="text/javascript" src="js/prefixfree.min.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/common.css" />
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.full-width').horizontalNav({});
+              });
+            
+        </script>
+        
+    </h:head>
+    <h:body>
+        
+        <nav class="horizontal-nav full-width horizontalNav-notprocessed">
+            <ul>
+              <li><h:outputLink value="home.xhtml">Home</h:outputLink></li>
+              <li><h:outputLink value="updateProfile.xhtml">Update My Profile</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="addProduct.xhtml">Add Product</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="removeProduct.xhtml">Remove Product</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="updateQuantity.xhtml">Update Quantity</h:outputLink></li>
+              <li><h:outputLink value="browseProducts.xhtml">Browse Products</h:outputLink></li>
+              <li><h:outputLink value="searchProducts.xhtml">Search Products</h:outputLink></li>
+              <li><h:outputLink value="searchProfiles.xhtml">Search Profiles</h:outputLink></li>
+              <li><h:outputLink value="cart.xhtml">Cart</h:outputLink></li>
+              <li><h:outputLink value="logout.xhtml">Logout</h:outputLink></li>
+            </ul>
+        </nav>
+        
+        #{user.accessCheck()}
+        
+        <div id="container1">
+
+            <h:form id="AddForm" enctype="multipart/form-data">
+                
+                <div class="field_container" style="text-align: center; font-size: x-large;">
+                    Add Product <br/><br/>
+                </div>
+                
+                <div class="field_container">
+                    <h:outputLabel for="product_id">Product ID</h:outputLabel><br/>
+                    <h:inputText id="product_id" value="#{product1.product_id}" required="true" requiredMessage="Product ID is required" />
+                </div>
+
+                <div class="field_container">
+                    <h:outputLabel for="product_name">Product Name</h:outputLabel><br/>
+                    <h:inputText id="product_name" value="#{product1.product_name}" required="true" requiredMessage="Product Name is required" />
+                </div>
+                
+                <div class="field_container">
+                    <h:outputLabel for="available_quantity">Available Quantity</h:outputLabel><br/>
+                    <h:inputText id="available_quantity" value="#{product1.available_quantity}" required="true" requiredMessage="Available Quantity is required" />
+                </div>
+
+                <div class="field_container">
+                    <h:outputLabel for="price">Price ($)</h:outputLabel><br/>
+                    <h:inputText id="price" value="#{product1.price}" required="true" requiredMessage="Price is required" />
+                </div>
+                
+                <div class="field_container">
+                    <h:outputLabel for="file">Image (only .jpg)</h:outputLabel><br/>
+                    <h:inputFile id="file" value="#{product1.file}">
+                    <!--<f:ajax listener="#{bean.save}" />-->
+                    </h:inputFile>
+                </div>
+                
+                
+                
+                <div class="field_container" style="text-align: center;">
+                    <h:commandButton id="submit-button" value="Add" action="#{product1.addProduct()}"/>  
+                </div>
+
+            </h:form>
+
+        </div>
+        
+    </h:body>
+</html>
+

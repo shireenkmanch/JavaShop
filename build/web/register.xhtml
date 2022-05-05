@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Register</title>
+
+        <script type="text/javascript" src="js/prefixfree.min.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/common.css" />
+    </h:head>
+    <h:body>
+
+        <div id="container1">
+
+            <h:form id="RegisterForm">
+                
+                
+                
+                <div class="field_container" style="text-align: center; font-size: x-large;">
+                    Register <br/><br/>
+                </div>
+                
+                <div class="field_container">
+                    <h:outputText style="color: red;" value="#{user.custom_message}"></h:outputText>
+                </div>
+                
+                <div class="field_container">
+                    <h:outputLabel for="userid">User ID</h:outputLabel><br/>
+                    <h:inputText id="userid" value="#{user.userid}" required="true" requiredMessage="User ID is required" />
+                </div>
+
+                <div class="field_container">
+                    <h:outputLabel for="password">Password</h:outputLabel><br/>  
+                    <h:inputSecret id="password" value="#{user.password}" required="true" requiredMessage="Password is required"></h:inputSecret> <br/><br/>     
+                </div>
+                
+                <div class="field_container">
+                    <h:outputLabel for="name">Name</h:outputLabel><br/>
+                    <h:inputText id="name" value="#{user.name}" required="true" requiredMessage="Name is required" />
+                </div>
+
+                <div class="field_container">
+                    <h:outputLabel for="email_id">Email</h:outputLabel><br/>
+                    <h:inputText id="email_id" value="#{user.email_id}" required="true" requiredMessage="Email is required" />
+                </div>
+
+                <div class="field_container">
+                    <h:outputLabel for="address">Address</h:outputLabel><br/>
+                    <!--<h:inputText id="address" value="#{user.address}" required="true" requiredMessage="Address is required" />-->
+                    <h:inputTextarea id="address" value="#{user.address}" required="true" requiredMessage="Address is required" style="width: 290px;"/>
+                </div>
+
+                <div class="field_container">
+                    <h:outputLabel for="message">Message</h:outputLabel><br/>
+                    <!--<h:inputText id="message" value="#{user.message}" required="true" requiredMessage="Message is required" />-->
+                    <h:inputTextarea id="message" value="#{user.message}" required="true" requiredMessage="Message is required" style="width: 290px;"/>
+                </div>
+
+                <div class="field_container" style="text-align: center;">
+                    <h:commandButton id="submit-button" value="Register" action="#{user.register()}"/>  
+                </div>
+                
+                <div class="field_container" style="text-align: center;">
+                    Already have an account?
+                    <h:outputLink value="login.xhtml">Login here</h:outputLink>
+                </div>
+
+            </h:form>
+
+        </div>
+
+    </h:body>
+</html>
+

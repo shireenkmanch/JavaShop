@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Cart</title>
+        
+        
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.horizontalNav.js"></script>
+        <script type="text/javascript" src="js/prefixfree.min.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/common.css" />
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.full-width').horizontalNav({});
+              });
+            
+        </script>
+        
+    </h:head>
+    <h:body>
+        
+        
+        <nav class="horizontal-nav full-width horizontalNav-notprocessed">
+            <ul>
+              <li><h:outputLink value="home.xhtml">Home</h:outputLink></li>
+              <li><h:outputLink value="updateProfile.xhtml">Update My Profile</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="addProduct.xhtml">Add Product</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="removeProduct.xhtml">Remove Product</h:outputLink></li>
+              <li><h:outputLink rendered="#{user.admin}" value="updateQuantity.xhtml">Update Quantity</h:outputLink></li>
+              <li><h:outputLink value="browseProducts.xhtml">Browse Products</h:outputLink></li>
+              <li><h:outputLink value="searchProducts.xhtml">Search Products</h:outputLink></li>
+              <li><h:outputLink value="searchProfiles.xhtml">Search Profiles</h:outputLink></li>
+              <li><h:outputLink value="cart.xhtml">Cart</h:outputLink></li>
+              <li><h:outputLink value="logout.xhtml">Logout</h:outputLink></li>
+            </ul>
+        </nav>
+        
+        <div id="container1">
+            
+                
+                
+                <div class="field_container" style="text-align: center; font-size: x-large;">
+                    Cart <br/><br/>
+                </div>
+                
+                <div class="field_container">
+                    <h:outputText id="cartSize" value="Your Cart has totally #{cart.cartCount} item(s)"/>
+                    <br/><br/><br/>
+                </div>
+                
+
+                <ui:repeat value="#{cart.cartContents.entrySet().toArray()}" var="p">
+                
+                    <div class="field_container">
+                        <br/><br/>
+                        Product: #{p.key.productName}, Price: #{p.key.price}, Count: #{p.value}
+                        - Total Price:
+                        <h:outputText rendered="#{p.value > 1}" value="#{p.key.price * p.value}" />
+                        <h:outputText rendered="#{p.value == 1}" value="#{p.key.price}" />
+                        <br/>
+                        <h:form style="border: none; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 10;">
+                            <h:commandButton value="+" action="#{cart.add(p.key)}"/>
+                            <h:commandButton value="-" action="#{cart.remove(p.key)}"/>
+                        </h:form>
+                        
+                        <br/>
+                    </div>
+                    
+
+                </ui:repeat>
+
+                
+            
+            <br/><br/>
+            Cart Total Price: #{cart.cartTotal}
+            
+            <h:form>
+                <h:commandButton rendered="#{cart.cartTotal > 0}" value="Check out" action="#{cart.checkOut(user.userid)}"/>
+                <h:commandButton rendered="#{cart.cartTotal > 0}" value="Remove all from Cart" action="#{cart.getCleaner()}"/>
+                <h:commandButton rendered="#{cart.cartTotal > 0}" value="Cancel" action="home.xhtml"/>
+            </h:form>
+            
+            
+            <div class="field_container">
+                <br/><br/><br/>
+                <h:outputText style="font-size: medium; color: red;" value="#{cart.custom_message}"></h:outputText>
+                </div>
+            <br/><br/><br/>
+            
+            
+        </div>
+        
+        
+        
+    </h:body>
+</html>
+
